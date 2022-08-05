@@ -1,32 +1,41 @@
 part of 'home_page_cubit.dart';
 
+// weather screen states
 enum HomePageStatus {
   initial,
   loading,
   loaded,
+  errorServer,
 }
 
 class HomePageState {
   final HomePageStatus _status;
-  final TextEditingController _cityController; // to get city name
+  final WeatherCity? _weatherCity;
+  final String? _errorMessage; // server error
 
-  HomePageState({
+  const HomePageState({
     required HomePageStatus status,
-    TextEditingController? cityController,
+    WeatherCity? weatherCity,
+    String? errorMessage,
   })  : _status = status,
-        _cityController = cityController ?? TextEditingController();
+        _weatherCity = weatherCity,
+        _errorMessage = errorMessage;
 
-  TextEditingController get cityController => _cityController;
+  String? get errorMessage => _errorMessage;
+
+  WeatherCity? get weatherCity => _weatherCity;
 
   HomePageStatus get status => _status;
 
   HomePageState copyWith({
     HomePageStatus? status,
-    TextEditingController? cityController,
+    WeatherCity? weatherCity,
+    String? errorMessage,
   }) {
     return HomePageState(
       status: status ?? _status,
-      cityController: cityController ?? _cityController,
+      weatherCity: weatherCity ?? _weatherCity,
+      errorMessage: errorMessage ?? _errorMessage,
     );
   }
 }

@@ -1,158 +1,104 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+// Project imports:
+import 'package:weather/presentation/pages/home_page/bloc/home_page_cubit.dart';
 
 class BottomInfo extends StatelessWidget {
   const BottomInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 40),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.white30,
+    return BlocBuilder<HomePageCubit, HomePageState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 40),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.white30,
+                ),
+              ),
             ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Text(
-                    'Wind',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    'wind',
-                    // locationList[index].wind.toString(),
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    'km/h',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Stack(
+                  Column(
                     children: [
-                      Container(
-                        height: 5,
-                        width: 50,
-                        color: Colors.white38,
+                      const Text(
+                        "Скорость ветра",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
-                      Container(
-                        height: 5,
-                        // width: locationList[index].wind / 2,
-                        color: Colors.greenAccent,
+                      Text(
+                        "${state.weatherCity!.wind!.speed} km/h",
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const Text(
+                        'Влажность',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        "${state.weatherCity!.main!.humidity} %",
+
+                        // locationList[index].rain.toString(),
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children:  [
+                      const Text(
+                        'Давление',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        "${state.weatherCity!.main!.pressure}",
+
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+
                     ],
                   ),
                 ],
               ),
-              Column(
-                children: [
-                  const Text(
-                    'Rain',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    'rain',
-                    // locationList[index].rain.toString(),
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    '%',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        height: 5,
-                        width: 50,
-                        color: Colors.white38,
-                      ),
-                      Container(
-                        height: 5,
-                        // width: locationList[index].rain / 2,
-                        color: Colors.redAccent,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  const Text(
-                    'Humidy',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    'humidity',
-                    // locationList[index].humidity.toString(),
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Text(
-                    '%',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        height: 5,
-                        width: 50,
-                        color: Colors.white38,
-                      ),
-                      Container(
-                        height: 5,
-                        // width: locationList[index].humidity / 2,
-                        color: Colors.redAccent,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

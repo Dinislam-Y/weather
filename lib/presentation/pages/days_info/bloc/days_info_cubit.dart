@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:bloc/bloc.dart';
+
+// Project imports:
 import 'package:weather/data/models/info_days.dart';
 import 'package:weather/data/repositories/days_info_repository.dart';
 

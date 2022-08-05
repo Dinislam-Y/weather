@@ -1,7 +1,11 @@
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:http/http.dart' as http;
-import 'package:weather/data/models/weatherCity.dart';
+
+// Project imports:
+import 'package:weather/data/models/weather_city.dart';
 
 // query for current weather information
 class TodayRepository {

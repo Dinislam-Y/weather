@@ -1,5 +1,6 @@
+// Project imports:
 import 'package:weather/data/models/clouds.dart';
-import 'package:weather/data/models/coord.dart';
+import 'package:weather/data/models/coordinates.dart';
 import 'package:weather/data/models/main_model.dart';
 import 'package:weather/data/models/system.dart';
 import 'package:weather/data/models/weather.dart';

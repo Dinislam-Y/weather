@@ -1,6 +1,10 @@
+// Dart imports:
 import 'dart:convert';
 
+// Package imports:
 import 'package:http/http.dart' as http;
+
+// Project imports:
 import 'package:weather/data/models/info_days.dart';
 
 // request for weather information 3 days in advance
