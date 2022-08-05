@@ -2,69 +2,102 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/autosize_text.dart';
+import '../days_info/widgets/autosize_text.dart';
 
 class FirstPage extends StatelessWidget {
-  const FirstPage({Key? key}) : super(key: key);
+  final String city;
+  final String image;
+
+  const FirstPage({
+    Key? key,
+    required this.city,
+    required this.image,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: ListView.separated(
-          physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) {
-            return Card(
-              child: SizedBox(
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 180,
-                      height: 180,
-                      child: Image.asset("assets/forecast.jpg"),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(
+            Icons.close,
+            size: 30,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      body: Stack(
+        children: [
+          Image.asset(
+            image,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+          Container(
+            decoration: const BoxDecoration(color: Colors.black45),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white54,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.black26,
+                      width: 5,
                     ),
-                    const Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const AutoSizeText(
-                          '',
-                          // "${state.info![index].dtTxt}",
-                          // style: WeatherTextStyle.title18bold(
-                          //   WeatherColors.black,
-                          // ),
-                          maxFontSize: 14,
-                          maxLines: 2,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomText(text: "Температура: "
-                            // "${state.info![index].main!.temp}",
-                            ),
-                        CustomText(text: "Скорость ветра: "
-                            // "${state.info![index].wind!.speed}",
-                            ),
-                        CustomText(text: "Видимость: "
-                            // "${state.info![index].visibility}",
-                            ),
-                        CustomText(text: "Облачность: "
-                            // "${state.info![index].clouds!.all}%",
-                            ),
-                        CustomText(text: "Влажность: "
-                            // "${state.info![index].main!.humidity}%",
-                            ),
-                      ],
+                  ),
+                  child: const TextField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      hintText: "Введите город",
+                      hintStyle: TextStyle(color: Colors.black45),
+                      border: InputBorder.none,
                     ),
-                  ],
+                  ),
+                  // controller: state.cityController,
                 ),
-              ),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return const Divider(thickness: 3);
-          },
-          itemCount: 2),
+                const SizedBox(height: 10),
+                Container(
+                  width: 200,
+                  decoration: const BoxDecoration(color: Colors.black45),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white54, // background
+                      onPrimary: Colors.black, // foreground
+                    ),
+                    onPressed: () {
+                      // if (state.cityController.text.isNotEmpty) {
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => WeatherScreen(
+                      //         city: state.cityController.text,
+                      //       ),
+                      //     ),
+                      //   );
+                      // } else {
+                      //   CustomDialog.show(context: context);
+                    },
+                    // },
+                    child: const Text("Поиск"),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

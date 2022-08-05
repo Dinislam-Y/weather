@@ -11,11 +11,14 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoSizeText(
-      text,
-      // style: WeatherTextStyle.title16bold(WeatherColors.black),
-      maxLines: 1,
-      maxFontSize: 14,
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: AutoSizeText(
+        text,
+        style: const TextStyle(color: Colors.white),
+        maxLines: 1,
+        maxFontSize: 14,
+      ),
     );
   }
 }

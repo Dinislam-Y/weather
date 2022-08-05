@@ -2,17 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather/presentation/pages/days_info/days_info.dart';
+import 'package:weather/presentation/pages/first_page/firts_page.dart';
 
 import 'widgets/bottom_info.dart';
 import 'widgets/single_weather.dart';
 
 class HomePage extends StatelessWidget {
-  final String city;
-
-  const HomePage({
-    Key? key,
-    required this.city,
-  }) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +30,18 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                const FirstPage(
+                  city: 'city',
+                  image: 'assets/night.jpeg',
+                ),
+              ),
+            );
+          },
           icon: const Icon(
             Icons.search,
             size: 30,
@@ -51,7 +58,11 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DaysInfoScreen(city: city),
+                      builder: (context) =>
+                      const DaysInfoScreen(
+                        city: 'city',
+                        image: 'assets/night.jpeg',
+                      ),
                     ),
                   );
                 },
@@ -66,6 +77,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Stack(
         children: [
+
           Image.asset(
             'assets/night.jpeg',
             fit: BoxFit.cover,
