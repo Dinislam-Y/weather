@@ -17,7 +17,6 @@ class HomePageCubit extends Cubit<HomePageState> {
 
   // getting weather information
   Future getWeather({required String city}) async {
-
     //get information about internet connection
     ConnectivityResult internet = await Connectivity().checkConnectivity();
 
@@ -25,30 +24,25 @@ class HomePageCubit extends Cubit<HomePageState> {
     if (internet != ConnectivityResult.none) {
       try {
         emit(state.copyWith(status: HomePageStatus.loading));
-
         final response = await _repository.fetch(city: city); // database query
-
+        emit(state.copyWith(
+          status: HomePageStatus.loaded,
+          weatherCity: response,
+        ));
+      } catch (error) {
+        // server error
         emit(
           state.copyWith(
-            status: HomePageStatus.loaded,
-            weatherCity: response,
-          ),
-        );
-      } catch (error) {  // server error
-        emit(
-          state.copyWith(
-            status: HomePageStatus.errorServer,
-            errorMessage: error.toString(),
-          ),
+              status: HomePageStatus.errorServer,
+              errorMessage: error.toString()),
         );
       }
-    } else {  // no network connection
-      emit(
-        state.copyWith(
-          status: HomePageStatus.errorServer,
-          errorMessage: "Нет подключения к интернету",
-        ),
-      );
+    } else {
+      // no network connection
+      emit(state.copyWith(
+        status: HomePageStatus.errorServer,
+        errorMessage: "Нет подключения к интернету",
+      ));
     }
   }
 }

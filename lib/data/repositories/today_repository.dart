@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 // Project imports:
 import 'package:weather/data/models/weather_city.dart';
 
-// query for current weather information
+//запрос текущей информации о погоде
 class TodayRepository {
   final String _apiKey = "ae72b78a3620648f64652eaacc760dbe";
 
@@ -16,12 +16,15 @@ class TodayRepository {
       "http://api.openweathermap.org/data/2.5/"
       "weather?q=$city&lang=ru&units=metric&APPID=$_apiKey",
     );
-    final response = await http.get(url); // database query
+    //database query
+    final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      final resultJson = jsonDecode(response.body); // serialization
+      //serialization
+      final resultJson = jsonDecode(response.body);
 
-      return WeatherCity.fromJson(resultJson); //json parsing
+      //json parsing
+      return WeatherCity.fromJson(resultJson);
     } else {
       //error processing
       final resultJson = jsonDecode(response.body) as Map<String, dynamic>;

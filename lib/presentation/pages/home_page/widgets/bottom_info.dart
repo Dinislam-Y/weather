@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:weather/presentation/pages/home_page/bloc/home_page_cubit.dart';
+import 'package:weather/theme/text_style.dart';
 
 class BottomInfo extends StatelessWidget {
   const BottomInfo({Key? key}) : super(key: key);
@@ -19,9 +20,7 @@ class BottomInfo extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 40),
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white30,
-                ),
+                border: Border.all(color: Colors.white30),
               ),
             ),
             Padding(
@@ -31,66 +30,38 @@ class BottomInfo extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      const Text(
+                      Text(
                         "Скорость ветра",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: AppTextStyle.title14bold(Colors.white),
                       ),
                       Text(
                         "${state.weatherCity!.wind!.speed} km/h",
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: AppTextStyle.title25bold(Colors.white),
                       ),
                     ],
                   ),
                   Column(
                     children: [
-                      const Text(
+                      Text(
                         'Влажность',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: AppTextStyle.title14bold(Colors.white),
                       ),
                       Text(
                         "${state.weatherCity!.main!.humidity} %",
-
-                        // locationList[index].rain.toString(),
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: AppTextStyle.title25bold(Colors.white),
                       ),
                     ],
                   ),
                   Column(
-                    children:  [
-                      const Text(
+                    children: [
+                      Text(
                         'Давление',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: AppTextStyle.title14bold(Colors.white),
                       ),
                       Text(
                         "${state.weatherCity!.main!.pressure}",
-
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: AppTextStyle.title25bold(Colors.white),
                       ),
-
                     ],
                   ),
                 ],

@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:weather/presentation/pages/first_page/bloc/first_page_cubit.dart';
 import 'package:weather/presentation/pages/home_page/home_page.dart';
+import 'package:weather/theme/text_style.dart';
 import 'package:weather/widgets/custom_dialog.dart';
 
 class FirstPage extends StatelessWidget {
@@ -16,7 +17,6 @@ class FirstPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FirstHomeCubit, FirstPageState>(
       builder: (context, state) {
-
         return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
@@ -58,14 +58,14 @@ class FirstPage extends StatelessWidget {
                           width: 5,
                         ),
                       ),
-                      child:  TextField(
+                      child: TextField(
                         textAlign: TextAlign.center,
+                        controller: state.cityController,
                         decoration: const InputDecoration(
                           hintText: "Введите город",
                           hintStyle: TextStyle(color: Colors.black45),
                           border: InputBorder.none,
                         ),
-                      controller: state.cityController,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -74,8 +74,8 @@ class FirstPage extends StatelessWidget {
                       decoration: const BoxDecoration(color: Colors.black45),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white54, // background
-                          onPrimary: Colors.black, // foreground
+                          primary: Colors.white54,
+                          onPrimary: Colors.black,
                         ),
                         onPressed: () {
                           if (state.cityController.text.isNotEmpty) {
@@ -83,16 +83,17 @@ class FirstPage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    HomePage(
-                                      city: state.cityController.text,
-                                    ),
+                                    HomePage(city: state.cityController.text),
                               ),
                             );
                           } else {
                             CustomDialog.show(context: context);
                           }
                         },
-                        child: const Text("Поиск"),
+                        child: Text(
+                          "Поиск",
+                          style: AppTextStyle.title18bold(Colors.black45),
+                        ),
                       ),
                     ),
                   ],

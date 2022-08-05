@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 //showDialog called on error
 class CustomErrorDialog {
+
   static Future<void> show({
     required BuildContext context,
     required String errorMessage,

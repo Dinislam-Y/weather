@@ -8,4 +8,6 @@ part 'first_page_state.dart';
 
 class FirstHomeCubit extends Cubit<FirstPageState> {
   FirstHomeCubit() : super(FirstPageState(status: FirstPageStatus.initial));
+
+
 }

@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 //showDialog called on empty field
 class CustomDialog extends StatelessWidget {
 
-  static void show({
-    required BuildContext context,
-  }) async {
+  static void show({required BuildContext context}) async {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
